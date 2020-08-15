@@ -1,12 +1,13 @@
 {% extends "news/base.html" %}
 {% block content %}
+  <h1 class="mb-3">Articles by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1></h1>
   {% for article in articles %}
   <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ article.author.profile.profile_pic.url}}" alt="Profile Picture">
     <div class="media-body">
       <div class="article-metadata">
         <a class="mr-2" href="{% url 'user-articles' article.author.username %}">{{ article.author.get_full_name }}</a>
-        <small class="text-muted">@{{ article.author }} · {{ article.date_posted }}</small>
+        <small class="text-muted">@{{ article.author }} · {{ article.date_published }}</small>
       </div>
       <p class="article-content font-weight-light"><a class="nounderline" href="{% url 'article-detail' article.id %}">{{ article.content }}</a></p>
     </div>
