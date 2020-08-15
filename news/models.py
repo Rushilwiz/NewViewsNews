@@ -9,13 +9,13 @@ from PIL import Image
 # Create your models here.
 
 class Article(models.Model):
-    headline = models.TextField()
+    headline = models.CharField(max_length=100)
     content = models.TextField()
     date_published = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.IntegerField(default=0)
     header = models.ImageField(default='default-header.jpg', upload_to='article-headers')
-    header_caption = models.TextField(default="")
+    header_caption = models.CharField(max_length=100, default="")
 
     def __str__(self):
         return f"{self.author}'s article on {self.date_published}"
