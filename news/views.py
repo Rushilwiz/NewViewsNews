@@ -32,7 +32,7 @@ class ArticleListView(ListView):
     model = Article
     template_name = "news/home.html"
     context_object_name='articles'
-    ordering = ['-date_posted']
+    ordering = ['-date_published']
     paginate_by = 8
 
 class UserArticleListView(ListView):
@@ -43,7 +43,7 @@ class UserArticleListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Article.objects.filter(author=user).order_by('-date_posted')
+        return Article.objects.filter(author=user).order_by('-date_published')
 
 class ArticleDetailView(DetailView):
     model = Article
