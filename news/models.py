@@ -8,7 +8,19 @@ from PIL import Image
 
 # Create your models here.
 
+
 class Article(models.Model):
+    A_L = 'authoritarian_left'
+    A_R = 'authoritarian_right'
+    L_L = 'libertarian_left'
+    L_R = 'libertarian_right'
+    POLITICAL_CHOICES = [
+        (A_L, ('Authoritarian Left')),
+        (A_R, ('Authoritarian Right')),
+        (L_L, ('Libertarian Left')),
+        (L_R, ('Libertarian Right')),
+    ]
+
     headline = models.CharField(max_length=100)
     content = models.TextField()
     date_published = models.DateTimeField(auto_now_add=True)
@@ -16,6 +28,7 @@ class Article(models.Model):
     likes = models.IntegerField(default=0)
     header = models.ImageField(default='default-header.jpg', upload_to='article-headers')
     header_caption = models.CharField(max_length=100, default="")
+    tag = models.CharField(max_length=19,choices=POLITICAL_CHOICES,default=A_L)
 
     def __str__(self):
         return f"{self.author}'s article on {self.date_published}"

@@ -52,7 +52,7 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
-    fields=['headline','header','header_caption','content']
+    fields=['headline','header','header_caption','content','tag']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -60,7 +60,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article
-    fields=['headline','header','header_caption','content']
+    fields=['headline','header','header_caption','content','tag']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
