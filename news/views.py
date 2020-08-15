@@ -37,7 +37,7 @@ class ArticleListView(ListView):
 
 class UserArticleListView(ListView):
     model = Article
-    template_name = "news/user_articles.html"
+    template_name = "news/user_article.html"
     context_object_name='articles'
     paginate_by = 8
 
