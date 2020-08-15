@@ -36,16 +36,18 @@
             <div class="navbar-nav">
             {% if user.is_authenticated %}
               <a class="nav-item nav-link" href="">New Chirp</a>
-              <a class="nav-item nav-link" href="">{{ user.username }}</a>
-              <a class="nav-item nav-link" href="">Logout</a>
+              <a class="nav-item nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
+              <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
             {% else %}
-              <a class="nav-item nav-link" href="">Login</a>
+              <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
             {% endif %}
             </div>
           </div>
         </div>
       </nav>
     </header>
+
+    <img src="{% static 'news/css/res/image.png' %}" alt="">
 
     <main role="main" class="container">
       <div class="row">
