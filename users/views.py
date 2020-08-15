@@ -9,8 +9,9 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from social_django.models import UserSocialAuth
 from .models import Profile
 
-
 def register(request):
+    createProfileIfNotExist(request)
+
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -25,12 +26,13 @@ def register(request):
 
 @login_required
 def profile(request):
+    createProfileIfNotExist(request)
 
     user = request.user
 
     if Profile.objects.filter(user=user).count() < 1:
         Profile.objects.create(user=user).save()
-        
+
     if user.has_usable_password() is False:
         return redirect ('password')
 
@@ -51,24 +53,42 @@ def profile(request):
 
     can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
 
+
+    if request.user.has_usable_password():
+        PasswordForm = PasswordChangeForm
+    else:
+        PasswordForm = AdminPasswordChangeForm
+
     if request.method == "POST":
         userForm = UserUpdateForm(request.POST, instance=request.user)
         profileForm = ProfileUpdateForm(request.POST,
                                         request.FILES,
                                         instance=request.user.profile)
 
+        passwordForm = PasswordForm(request.user, request.POST)
+
         if userForm.is_valid() and profileForm.is_valid():
             userForm.save()
             profileForm.save()
             messages.success(request, "Your account has been updated!")
             return redirect('profile')
+        elif passwordForm.is_valid():
+            passwordForm.save()
+            update_session_auth_hash(request, passwordForm.user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+
     else:
         userForm = UserUpdateForm(instance=request.user)
         profileForm = ProfileUpdateForm(instance=request.user.profile)
+        passwordForm = PasswordForm(request.user)
 
     context = {
         'userForm': userForm,
         'profileForm': profileForm,
+        'passwordForm': passwordForm,
         'github_login': github_login,
         'google_login': google_login,
         'facebook_login': facebook_login,
@@ -79,6 +99,8 @@ def profile(request):
 
 @login_required
 def password(request):
+    createProfileIfNotExist(request)
+
     if request.user.has_usable_password():
         PasswordForm = PasswordChangeForm
     else:
@@ -96,3 +118,8 @@ def password(request):
     else:
         form = PasswordForm(request.user)
     return render(request, 'users/password.html', {'form': form})
+
+
+def createProfileIfNotExist (request):
+    if request.user.is_authenticated and Profile.objects.filter(user=request.user).count() < 1:
+        Profile.objects.create(user=request.user).save()

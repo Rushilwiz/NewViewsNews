@@ -6,6 +6,7 @@
       <div class="article-metadata">
         <a class="mr-2" href="{% url 'user-articles' object.author.username %}">{{ object.author.get_full_name }}</a>
         <small class="text-muted">@{{ object.author }} · {{ object.date_published }}</small>
+
         {% if object.author == user %}
           <div>
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'article-update' object.id %}">Edit article</a>
@@ -13,6 +14,8 @@
           </div>
         {% endif %}
       </div>
+
+      <img class="" src="{{ object.header.url }}">
       <p class="article-content font-weight-light">{{ article.content }}</p>
     </div>
   </article>

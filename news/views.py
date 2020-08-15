@@ -16,11 +16,12 @@ from users.models import Profile
 # Create your views here.
 
 def about (request):
+    createProfileIfNotExist(request)
+
     return render (request, 'news/about.html')
 
 def home (request):
-    if request.user.is_authenticated and Profile.objects.filter(user=request.user).count() < 1:
-        Profile.objects.create(user=request.user).save()
+    createProfileIfNotExist(request)
 
     context = {
         'articles': Article.objects.all()
@@ -29,6 +30,7 @@ def home (request):
     return render (request, 'news/home.html', context)
 
 class ArticleListView(ListView):
+
     model = Article
     template_name = "news/home.html"
     context_object_name='articles'
@@ -50,7 +52,7 @@ class ArticleDetailView(DetailView):
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
-    fields=['content']
+    fields=['headline','header','header_caption','content']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -58,7 +60,7 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Article
-    fields=['content']
+    fields=['headline','header','header_caption','content']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -75,3 +77,7 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         article = self.get_object()
         return self.request.user == article.author
+
+def createProfileIfNotExist (request):
+    if request.user.is_authenticated and Profile.objects.filter(user=request.user).count() < 1:
+        Profile.objects.create(user=request.user).save()

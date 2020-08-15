@@ -6,9 +6,9 @@
     <div class="media-body">
       <div class="article-metadata">
         <a class="mr-2" href="{% url 'user-articles' article.author.username %}">{{ article.author.get_full_name }}</a>
-        <small class="text-muted">@{{ article.author }} · {{ article.date_published }}</small>
+        <a href="{% url 'user-articles' article.author.username %}"><small class="text-muted">@{{ article.author }} · {{ article.date_published }}</small></a>
       </div>
-      <p class="article-content font-weight-light"><a class="nounderline" href="{% url 'article-detail' article.id %}">{{ article.content }}</a></p>
+      <p class="article-content font-weight-light"><a class="nounderline" href="{% url 'article-detail' article.id %}">{{ article.headline }}</a></p>
     </div>
   </article>
   {% endfor %}
