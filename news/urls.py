@@ -12,6 +12,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
+    path('policy/', views.policy, name='privacy-policy'),
 
     path('user/<str:username>', UserArticleListView.as_view(), name='user-articles'),
     path('article/<int:pk>/', ArticleDetailView.as_view(), name='article-detail'),

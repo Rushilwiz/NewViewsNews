@@ -24,6 +24,8 @@ from django.contrib.auth import views as auth_views
 from users import views as user_views
 
 urlpatterns = [
+    path('', include('news.urls')),
+
     path('admin/', admin.site.urls),
 
     path('register/', user_views.register, name='register'),
@@ -31,12 +33,11 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('profile/', user_views.profile, name='profile'),
     path('profile/password/', user_views.password, name='password'),
+    path('values/', user_views.values, name='values'),
 
     path('oauth/', include('social_django.urls', namespace='social')),
 
-    path('', include('news.urls')),
 ]
-
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

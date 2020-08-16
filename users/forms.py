@@ -24,3 +24,12 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_pic']
+
+class ValuesUpdateForm(forms.ModelForm):
+
+    economicScore = forms.IntegerField(label="Economic Score")
+    socialScore = forms.IntegerField(label="Social Score")
+
+    class Meta:
+        model = Profile
+        fields = ['economicScore', 'socialScore']

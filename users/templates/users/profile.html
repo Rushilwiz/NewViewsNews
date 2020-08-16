@@ -81,5 +81,59 @@
     {{ passwordForm|crispy }}
     <button type="submit" class="btn btn-outline-info">Save changes</button>
   </form>
+  <hr>
+  <canvas class="mx-auto" id="compass" width="500" height="500" style="border:1px solid #000000;">
+  Your browser does not support the HTML canvas tag.
+  </canvas>
+
+  <script>
+  var c = document.getElementById("compass");
+  var ctx = c.getContext("2d");
+
+  ctx.fillStyle = "#ff7575";
+  ctx.fillRect(0,0,250,250)
+
+  ctx.fillStyle = "#42abff";
+  ctx.fillRect(250,0,250,250)
+
+  ctx.fillStyle = "#9aec98";
+  ctx.fillRect(0,250,250,250)
+
+  ctx.fillStyle = "#bf9aea";
+  ctx.fillRect(250,250,250,250)
+
+  ctx.lineWidth = 2.5;
+  ctx.moveTo(250,0);
+  ctx.lineTo(250,500);
+  ctx.stroke();
+  ctx.moveTo(0,250);
+  ctx.lineTo(500,250);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc({{ valueX }}, {{ valueY }}, 5, 0, 2 * Math.PI);
+  ctx.stroke();
+
+  ctx.fillStyle = "#000";
+
+  ctx.fill();
+
+  ctx.font = "16px Arial";
+  ctx.fillText("You are here", {{ valueX }}+15, {{ valueY }}-15);
+
+  </script>
+
+  <hr>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4"> Retake the political compass test at <a href="https://spekr.org/" target="_blank">spekr.org</a></legend>
+      {{ valuesForm|crispy}}
+    </fieldset>
+    <div class="form-group">
+      <button type="submit" class="btn btn-outline-info">Update</button>
+    </div>
+  </form>
+  <hr>
 </div>
 {% endblock content %}

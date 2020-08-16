@@ -1,18 +1,29 @@
 {% extends "news/base.html" %}
 {% block content %}
+
+<div class="row">
   {% for article in articles %}
-  <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ article.author.profile.profile_pic.url}}" alt="Profile Picture">
-    <div class="media-body">
-      <div class="article-metadata">
-        <a class="mr-2" href="{% url 'user-articles' article.author.username %}">{{ article.author.get_full_name }}</a>
-        <a href="{% url 'user-articles' article.author.username %}"><small class="text-muted">@{{ article.author }} · {{ article.date_published }}</small></a>
+      <div class="col-lg-4 col-sm-6 mb-4" style="margin-top: 2%">
+          <div class="card shadow border-0 h-100"><a href="">
+              <img src="{{ article.header.url }}" alt="..." class="img-fluid card-img-top"></a>
+              <div class="card-body"><a href="" class="text-uppercase text-muted text-sm letter-spacing-2">{{ post.category }} </a>
+                  <h5 class="my-2"><a href="post.html" class="text-dark">{{ article.headline }}</a></h5>
+                   <a href="{% url 'user-articles' article.author.username %}">{{ article.author.get_full_name }}<small class="text-muted"> · @{{ article.author }} · {{ article.date_published }}</small></a>
+                  <p class="my-2 text-muted text-sm">{{ article.content|safe|truncatechars_html:70|linebreaks }}</p>
+              </div>
+          </div>
       </div>
-      <p class="article-content font-weight-light"><a class="nounderline" href="{% url 'article-detail' article.id %}">{{ article.headline }}</a></p>
+
+  {% if forloop.counter|divisibleby:3 %}
+    </div><!-- close existing row and open another one-->
+    <div class="row">
+      {% endif %}
+         {% endfor %}
     </div>
-  </article>
-  {% endfor %}
   {% if is_paginated %}
+
+
+
 
     {% if page_obj.has_previous %}
       <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
