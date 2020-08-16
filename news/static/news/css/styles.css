@@ -150,7 +150,7 @@ a.article-title:hover {
 }
 
 .bounce:hover{
-  animation: bounce 2s;
+  animation: bounce 1.5s;
 }
 @keyframes bounce {
   0%, 20%, 60%, 100% {
