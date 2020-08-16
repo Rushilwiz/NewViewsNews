@@ -6,6 +6,8 @@ from django.urls import reverse
 
 from PIL import Image
 
+from tinymce.models import HTMLField
+
 # Create your models here.
 
 
@@ -22,7 +24,7 @@ class Article(models.Model):
     ]
 
     headline = models.CharField(max_length=100)
-    content = models.TextField()
+    content = HTMLField()
     date_published = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.IntegerField(default=0)

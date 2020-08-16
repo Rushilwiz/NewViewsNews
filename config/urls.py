@@ -34,6 +34,9 @@ urlpatterns = [
 
     path('oauth/', include('social_django.urls', namespace='social')),
 
+
+    path('tinymce/', include('tinymce.urls')),
+
     path('', include('news.urls')),
 ]
 

@@ -9,7 +9,11 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(default='default-pfp.jpg', upload_to='profile_pics')
-    
+    gaveValues = models.BooleanField(default=False)
+    economicScore = models.IntegerField(default=True,blank=True)
+    socialScore = models.IntegerField(default=True,blank=True)
+
+
     def __str__(self):
         return f'{self.user.username} Profile'
 
