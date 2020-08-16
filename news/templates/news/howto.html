@@ -2,12 +2,23 @@
 {% load static %}
 {% block content %}
 <h1>How to use NewViewsNews</h1>
-<h5 class="text-center">In this day and age, close-mindedness and echochambers prevent others from being exposed to people who offer varying perspectives. This has caused a lot of conflict within our society. Our solution: NewViewsNews.</h5>
+<br>
+<h5 class="text-center">Here's how to get started with your new account on NewViewsNews.</h5>
+<h3>Step 1</h3>
+<p>Take the political affiliation quiz through Spekr. This will allow us to get a gauge on the type of articles we should be suggesting to you.</p>
+<br>
+<h3>Step 2</h3>
+<p>Write your first post. When logged in, you will see a write button in the top right corner of your page. From there you will see a form that you should fill out to make your article. <a href="{% url 'article-create' %}">Click here to write your first article!</a> 
+<br></br>
+<img width="100%" src="{% static 'news/css/res/howtomodel.png'%}" alt="logo">
+ </p>
+ <br>
+<h3>Step 3</h3>
+<p>Once you have posted your article, click on the <a href="{% url 'home' %}"">Home Page</a> to see other members articles whose opinions may oppose yours.</p>
+<br>
+<h3>Step 4</h3>
+<p>Continue broadening your political horizons on NewsViewsNews!</p>
+<br>
 <img width="100%" src="{% static 'news/css/res/logo.svg'%}" alt="logo">
-<br><br><br>
-<p>NewViewsNews is a crowdsourcing news site that allows you to view the news and opinions of people who have opposing political views. To get started, you simply make an account and specify your position on the political compass. After that, you can write your own posts and view other posts! Our algorithms will display posts from individuals on the opposite side of the compass on your home page.</p>
-<p>NewViewsNews is paving the way for an open minded and more understanding community. <a href="{% url 'login' %}">Join us today!</a></p>
-
-
 
 {% endblock content %}
