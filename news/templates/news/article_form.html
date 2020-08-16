@@ -5,6 +5,8 @@
   <form method="post">
     {% csrf_token %}
     <fieldset class="form-group">
+
+      {{ form.media }}
       {{ form | crispy}}
     </fieldset>
     <div class="form-group">
