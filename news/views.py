@@ -24,6 +24,14 @@ def about (request):
 
     return render (request, 'news/about.html')
 
+@login_required
+def howto (request):
+    createProfileIfNotExist(request)
+    if checkValues(request) is False:
+        return redirect('values')
+
+    return render (request, 'news/howto.html')
+
 def policy (request):
     return render (request, 'news/policy.html')
 
