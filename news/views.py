@@ -10,6 +10,9 @@ from django.views.generic import (
     DeleteView,
 )
 
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
+
 from .models import Article
 from users.models import Profile
 
@@ -112,6 +115,13 @@ class UserArticleListView(ListView):
 class ArticleDetailView(DetailView):
     model = Article
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        article = get_object_or_404(Article, id=self.kwargs['pk'])
+        total_likes = article.total_likes
+        context["total_likes"] = total_likes
+        return context
+
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
     fields=['headline','header','header_caption','content','tag']
@@ -139,6 +149,12 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         article = self.get_object()
         return self.request.user == article.author
+
+
+def LikeView (request, pk):
+    article = get_object_or_404(Article, id=request.POST.get('article_id'))
+    article.likes.add(request.user)
+    return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))
 
 def createProfileIfNotExist (request):
     if request.user.is_authenticated and Profile.objects.filter(user=request.user).count() < 1:

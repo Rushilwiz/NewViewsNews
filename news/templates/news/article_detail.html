@@ -19,8 +19,13 @@
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'article-delete' object.id %}">Delete article</a>
               </div>
             {% endif %}
+            <form action="{% url 'like_article' article.pk %}" method="post">
+              {% csrf_token %}
+              <button type="submit" name="article_id" value="{{ article.id }}" class="btn btn-primary btn-small">Like</button> - {{ total_likes }}
+            </form>
           </div>
           <p class="article-content font-weight-light">{{ article.content|safe }}</p>
+
         </div>
   </article>
 {% endblock content %}

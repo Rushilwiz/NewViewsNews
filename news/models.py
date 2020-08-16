@@ -28,13 +28,16 @@ class Article(models.Model):
     content = RichTextField(blank=True, null=True)
     date_published = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes = models.IntegerField(default=0)
+    likes = models.ManyToManyField(User, related_name="article_likes")
     header = models.ImageField(null=True, blank=True, default='default-header.jpg', upload_to='article-headers')
     header_caption = models.CharField(max_length=100, default="")
     tag = models.CharField(max_length=19,choices=POLITICAL_CHOICES,default=L_L)
 
     def __str__(self):
         return f"{self.headline} by {self.author}"
+
+    def total_likes(self):
+        return self.likes.count();
 
     def get_absolute_url(self):
         return reverse('article-detail', kwargs={'pk': self.pk})
