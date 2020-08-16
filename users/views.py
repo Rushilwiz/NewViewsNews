@@ -97,7 +97,6 @@ def profile(request):
 
     valueX = user.profile.economicScore * 2.5 + 250
     valueY = user.profile.socialScore * -2.5 + 250
-    print("VALUEX IS " + str(valueX))
 
     context = {
         'userForm': userForm,

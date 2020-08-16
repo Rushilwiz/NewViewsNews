@@ -16,3 +16,6 @@ pip-delete-this-directory.txt
 .venv/
 venv/
 env/
+
+# WSL
+*:Zone.Identifier 

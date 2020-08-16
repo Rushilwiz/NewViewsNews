@@ -1,22 +1,26 @@
 {% extends "news/base.html" %}
 {% block content %}
-  <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.author.profile.profile_pic.url}}" alt="Profile Picture">
-    <div class="media-body">
-      <div class="article-metadata">
-        <a class="mr-2" href="{% url 'user-articles' object.author.username %}">{{ object.author.get_full_name }}</a>
-        <small class="text-muted">@{{ object.author }} · {{ object.date_published }}</small>
+      <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'home' %}">Back</a>
+      <h1>{{ article.headline }}</h1>
+      <figure class="figure">
+        <img src="{{ object.header.url }}" class="float-center figure-img img-fluid rounded" alt="Article Header">
+        <figcaption class="figure-caption">{{ object.header_caption }}</figcaption>
+      </figure>
 
-        {% if object.author == user %}
-          <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'article-update' object.id %}">Edit article</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'article-delete' object.id %}">Delete article</a>
+        <div class="media-body">
+          <div class="article-metadata pb-2">
+            <img class="rounded-circle article-img" src="{{ object.author.profile.profile_pic.url}}" alt="Profile Picture">
+            <a class="mr-2" href="{% url 'user-articles' object.author.username %}">{{ object.author.get_full_name }}</a>
+            <small class="text-muted">@{{ object.author }} · {{ object.date_published }}</small>
+
+            {% if object.author == user %}
+              <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'article-update' object.id %}">Edit article</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'article-delete' object.id %}">Delete article</a>
+              </div>
+            {% endif %}
           </div>
-        {% endif %}
-      </div>
-
-      <img class="img-fluid" src="{{ object.header.url }}">
-      <p class="article-content font-weight-light">{{ article.content|safe }}</p>
-    </div>
+          <p class="article-content font-weight-light">{{ article.content|safe }}</p>
+        </div>
   </article>
 {% endblock content %}

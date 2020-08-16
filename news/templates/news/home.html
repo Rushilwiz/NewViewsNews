@@ -6,8 +6,8 @@
       <div class="col-lg-4 col-sm-6 mb-4" style="margin-top: 2%">
           <div class="card shadow border-0 h-100"><a href="">
               <img src="{{ article.header.url }}" alt="..." class="img-fluid card-img-top"></a>
-              <div class="card-body"><a href="" class="text-uppercase text-muted text-sm letter-spacing-2">{{ post.category }} </a>
-                  <h5 class="my-2"><a href="post.html" class="text-dark">{{ article.headline }}</a></h5>
+              <div class="card-body"><a href="{% url 'article-detail' article.id %}" class="text-uppercase text-muted text-sm letter-spacing-2">{{ article.tag }} </a>
+                  <h5 class="my-2"><a href="{% url 'article-detail' article.id %}" class="nounderline text-dark">{{ article.headline }}</a></h5>
                    <a href="{% url 'user-articles' article.author.username %}">{{ article.author.get_full_name }}<small class="text-muted"> · @{{ article.author }} · {{ article.date_published }}</small></a>
                   <p class="my-2 text-muted text-sm">{{ article.content|safe|truncatechars_html:70|linebreaks }}</p>
               </div>
