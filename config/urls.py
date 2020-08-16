@@ -25,6 +25,7 @@ from users import views as user_views
 
 urlpatterns = [
     path('', include('news.urls')),
+    path('spectrum/', include('spectrum.urls')),
 
     path('admin/', admin.site.urls),
 

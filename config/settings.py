@@ -78,6 +78,7 @@ SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
 INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'users.apps.UsersConfig',
+    'spectrum.apps.SpectrumConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

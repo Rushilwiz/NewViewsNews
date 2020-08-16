@@ -1,0 +1,21 @@
+{% extends 'news/base.html' %}
+{% block content %}
+<div class="row">
+  {% for article in feed %}
+      <div class="col-lg-4 col-sm-6 mb-4" style="margin-top: 2%">
+          <div class="card shadow border-0 h-100"><a href="">
+              <div class="card-body">
+                  <h5 class="my-2"><a href="{{article.link}}" class="nounderline text-dark">{{ article.title }}</a></h5>
+                   <p>By: {{ article.author }}</p>
+                  <p class="my-2 text-muted text-sm">{{article.summary|safe|truncatechars_html:200|linebreaks }}</p>
+              </div>
+          </div>
+      </div>
+
+  {% if forloop.counter|divisibleby:3 %}
+    </div><!-- close existing row and open another one-->
+    <div class="row">
+      {% endif %}
+         {% endfor %}
+    </div>
+{% endblock content %}
