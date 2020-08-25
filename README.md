@@ -1,6 +1,5 @@
 # NewViewsNews
-HackDefy submission 2020
-
+Created by: Rushil Umaretiya, Christopher Arraya, Joshua Lim, and Zaeem Qureshi
 
 
 ![GitHub language](https://img.shields.io/github/languages/top/rushilwiz/newviewsnews?color=FF6663)
@@ -9,16 +8,6 @@ HackDefy submission 2020
 ![GitHub repo size](https://img.shields.io/github/repo-size/rushilwiz/newviewsnews?color=9EE09E)
 ![GitHub](https://img.shields.io/github/license/rushilwiz/newviewsnews?color=9EC1CF)
 ![GitHub last commit](https://img.shields.io/github/last-commit/rushilwiz/newviewsnews?color=CC99C9)
-
-## For the judges
-
-To replicate this locally just follow the following steps:
-
-1. Clone the repository
-2. Install python 3+
-3. run ```pip install -r requirements.txt``` inside of the repository
-4. run ```python3 manage.py runserver```
-5. Open localhost:8000 in the browser of your choice!
 
 ## Inspiration
 Our project was inspired by the evergrowing activism community in our country that becoming is more and more toxic every year due to closemindedness and echo chambers. This has resulted in a society that has more conflict and is less understanding of people with different opinions and political viewpoints.
