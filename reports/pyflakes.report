@@ -1,0 +1,27 @@
+news/views.py:14:1 'django.urls.reverse_lazy' imported but unused
+news/views.py:164:42 use ==/!= to compare constant literals (str, bytes, int, float, tuple)
+news/models.py:3:1 'django.utils.timezone' imported but unused
+news/urls.py:2:1 '.views.ArticleListView' imported but unused
+news/tests.py:1:1 'django.test.TestCase' imported but unused
+users/views.py:3:1 'django.contrib.auth.login' imported but unused
+users/views.py:3:1 'django.contrib.auth.authenticate' imported but unused
+users/views.py:6:1 'django.contrib.auth.forms.UserCreationForm' imported but unused
+users/views.py:21:13 local variable 'username' is assigned to but never used
+users/views.py:22:39 f-string is missing placeholders
+users/views.py:118:5 local variable 'user' is assigned to but never used
+users/views.py:171:42 use ==/!= to compare constant literals (str, bytes, int, float, tuple)
+users/tests.py:1:1 'django.test.TestCase' imported but unused
+spectrum/admin.py:1:1 'django.contrib.admin' imported but unused
+spectrum/models.py:1:1 'django.db.models' imported but unused
+spectrum/tests.py:1:1 'django.test.TestCase' imported but unused
+venv/lib/python3.8/site-packages/crispy_forms/compatibility.py:6:5 'functools.lru_cache' imported but unused
+venv/lib/python3.8/site-packages/crispy_forms/templatetags/crispy_forms_tags.py:13:1 'from crispy_forms.templatetags.crispy_forms_filters import *' used; unable to detect undefined names
+venv/lib/python3.8/site-packages/crispy_forms/templatetags/crispy_forms_tags.py:13:1 'crispy_forms.templatetags.crispy_forms_filters.*' imported but unused
+venv/lib/python3.8/site-packages/django/contrib/messages/__init__.py:1:1 'from django.contrib.messages.api import *' used; unable to detect undefined names
+venv/lib/python3.8/site-packages/django/contrib/messages/__init__.py:1:1 'django.contrib.messages.api.*' imported but unused
+venv/lib/python3.8/site-packages/django/contrib/messages/__init__.py:2:1 'from django.contrib.messages.constants import *' used; unable to detect undefined names
+venv/lib/python3.8/site-packages/django/contrib/messages/__init__.py:2:1 'django.contrib.messages.constants.*' imported but unused
+venv/lib/python3.8/site-packages/social_django/compat.py:10:5 'django.core.urlresolvers.reverse' imported but unused
+venv/lib/python3.8/site-packages/social_django/models.py:2:1 'six' imported but unused
+venv/lib/python3.8/site-packages/social_django/strategy.py:3:1 'django.http.HttpRequest' imported but unused
+venv/lib/python3.8/site-packages/social_django/migrations/0004_auto_20160423_0400.py:4:1 'django.db.models' imported but unused

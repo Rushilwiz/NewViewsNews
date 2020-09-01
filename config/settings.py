@@ -87,8 +87,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
-    'ckeditor'
+    'ckeditor',
+    'django_jenkins'
 ]
+
+JENKINS_TASKS = (
+    'django_jenkins.tasks.run_pep8',
+    'django_jenkins.tasks.run_pyflakes'
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
