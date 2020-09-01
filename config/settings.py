@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*xr(pm2^(d#+8m-valinzpi)edwiq!uhvhlmyc!v6%m&_nm6kp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Auth Backends
@@ -129,8 +129,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'newviewsnews',
+        'USER': 'zjrc',
+        'PASSWORD': '!ZJRC123',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -159,7 +163,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -172,13 +176,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
